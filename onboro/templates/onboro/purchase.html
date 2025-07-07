@@ -1,0 +1,17 @@
+{% extends 'onboro/base.html' %}
+{% load widget_tweaks %}
+
+{% block contents %}
+
+<h1 class="my-3">コインの購入</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        {{ form.amount|add_label_class:"form-label" }}
+        {{ form.amount|add_class:"form-control" }}
+    </div>
+    <button type="submit" class="btn btn-primary">購入する</button>
+</form>
+
+{% endblock %}

@@ -1,24 +1,140 @@
-.navbar-light {
-    background-color: #f0f0f0 !important;
+/*
+ * --- かわいいテーマ ---
+ * フォントと全体的なカラースキームを設定
+ */
+body {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    background-color: #fff9fb; /* 全体の背景をほんのりピンクに */
+    color: #5b4c53; /* メインのテキストカラーを優しいブラウンに */
 }
 
-/* ボタンの角を丸くする */
+/* リンクの色とホバー効果 */
+a {
+    color: #e85d87; /* リンクの色を鮮やかなピンクに */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:hover {
+    color: #d14a75;
+    text-decoration: underline;
+}
+
+/*
+ * --- ナビゲーションバー ---
+ */
+.navbar {
+    background-color: #ffffff !important;
+    border-bottom: 2px solid #fde4ec; /* 下部にピンクのライン */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* ほんのり影をつける */
+}
+.navbar-brand {
+    font-weight: 700; /* 太字 */
+    color: #e85d87 !important;
+}
+
+/*
+ * --- ボタン ---
+ */
 .btn {
-    border-radius: 20px;
+    border-radius: 50px; /* ボタンを角丸（ピル形状）に */
+    border-width: 2px;
+    font-weight: 700;
+    padding: 8px 24px;
+    transition: all 0.3s ease;
+}
+.btn-primary {
+    background-color: #e85d87;
+    border-color: #e85d87;
+}
+.btn-primary:hover {
+    background-color: #d14a75;
+    border-color: #d14a75;
+    transform: translateY(-2px); /* ホバー時に少し浮き上がる */
+    box-shadow: 0 4px 10px rgba(232, 93, 135, 0.3);
 }
 
-/* テーブルのヘッダーの背景色と文字色を変更 */
+/* アウトラインボタン（お気に入りに追加など） */
+.btn-outline-warning {
+    color: #e85d87;
+    border-color: #e85d87;
+}
+.btn-outline-warning:hover {
+    color: #fff;
+    background-color: #e85d87;
+    border-color: #e85d87;
+}
+.btn-warning {
+    color: #fff;
+    background-color: #e85d87;
+    border-color: #e85d87;
+}
+
+/*
+ * --- フォーム ---
+ */
+.form-control, .form-select {
+    border-radius: 12px;
+    border: 1px solid #fde4ec;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #e85d87;
+    box-shadow: 0 0 8px rgba(232, 93, 135, 0.2);
+}
+
+/*
+ * --- テーブル ---
+ */
+.table {
+    border-collapse: separate;
+    border-spacing: 0 8px; /* 行間にスペースを設ける */
+}
 .table thead th {
-    background-color: #343a40;
-    color: #ffffff;
+    background-color: transparent;
+    color: #e85d87;
+    border: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+.table tbody tr {
+    background-color: #ffffff;
+    border-radius: 12px; /* 行の角を丸くする */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+.table tbody tr:hover {
+    transform: translateY(-3px);
+}
+.table td, .table th {
+    border-top: none !important;
+    padding: 16px;
+    vertical-align: middle;
 }
 
-/* 書籍本文のスタイル */
+/*
+ * --- 書籍閲覧ページ ---
+ */
 .book-body {
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 5px;
-    line-height: 1.8;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    line-height: 2; /* 行間を広げて読みやすく */
     font-size: 1.1rem;
-    color: #333;
+    color: #5b4c53;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/*
+ * --- カード（購入済み表示など）---
+ */
+.card {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+.card.text-dark.bg-light {
+    background-color: #e6fcf5 !important;
+    color: #1f7d62 !important;
 }

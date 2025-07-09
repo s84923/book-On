@@ -154,7 +154,8 @@ a:hover {
 }
 
 .btn-outline-success:hover{
-    color: #e6fcf5;
-    background-color: #e85d87;
-    border-color: #e85d87;
+    background-color: #d14a75; /* 少し濃いピンクに */
+    border-color: #d14a75;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(232, 93, 135, 0.3);
 }

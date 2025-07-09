@@ -30,6 +30,8 @@ class Book(models.Model):
     abstract = models.TextField(verbose_name='概要')
     price = models.PositiveIntegerField(verbose_name='価格')
     published = models.BooleanField('公開')
+    favorite_users = models.ManyToManyField(User, related_name='favorite_books', blank=True)
+
 
     class Meta:
         verbose_name = '書籍'

@@ -38,6 +38,14 @@
 </ul>
 
 {% if user.is_authenticated %}
+    <div class="mt-3">
+    {% if is_favorited %}
+        <a href="{% url 'onboro:toggle_favorite' book.pk %}" class="btn btn-warning">お気に入りから削除</a>
+    {% else %}
+        <a href="{% url 'onboro:toggle_favorite' book.pk %}" class="btn btn-outline-warning">お気に入りに追加</a>
+    {% endif %}
+    </div>
+
     {% if use_form %}
         <form action="{% url 'onboro:transaction_use' user.pk %}" method="post" class="mt-3">
             {% csrf_token %}

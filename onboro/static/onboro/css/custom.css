@@ -1,7 +1,3 @@
-/*
- * --- かわいいテーマ ---
- * フォントと全体的なカラースキームを設定
- */
 body {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     background-color: #fff9fb; /* 全体の背景をほんのりピンクに */
@@ -137,4 +133,16 @@ a:hover {
 .card.text-dark.bg-light {
     background-color: #e6fcf5 !important;
     color: #1f7d62 !important;
+}
+
+.btn-outline-success{
+    color: #fff;
+    background-color: #e85d87;
+    border-color: transparent;
+}
+
+.btn-outline-success:hover{
+    color: #e6fcf5;
+    background-color: #e85d87;
+    border-color: #e85d87;
 }

@@ -1,0 +1,39 @@
+{% extends 'onboro/base.html' %}
+{% load humanize %}
+
+{% block title %}
+お気に入り一覧 | {{ block.super }}
+{% endblock %}
+
+{% block contents %}
+
+<h1 class="my-3">お気に入り一覧</h1>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>カテゴリ</th>
+            <th>書名</th>
+            <th>価格</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.category.name }}</td>
+                <td>
+                    <a href="{% url 'onboro:book_detail' book.pk %}">
+                        {{ book.title }}
+                    </a>
+                </td>
+                <td>{{ book.price|intcomma }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">お気に入りに登録された書籍はありません。</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

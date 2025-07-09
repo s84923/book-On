@@ -31,6 +31,11 @@
 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="{% url 'onboro:favorite_book_list' %}" class="nav-link">
+                                お気に入り
+                            </a>
+                        </li>
                         {# ログインしている場合は誰でログインしているか表示し、ログアウトリンクを出力 #}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
@@ -39,7 +44,6 @@
                             <ul class="dropdown-menu">
                                 <form action="{% url 'onboro:logout' %}" method="post">
                                     {% csrf_token %}
-                                    <!-- dropdown-itemを指定すると見た目はリンクになる -->
                                     <input type="submit" value="ログアウト" class="dropdown-item">
                                 </form>
                             </ul>

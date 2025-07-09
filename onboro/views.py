@@ -2,13 +2,13 @@ from django.shortcuts import redirect, get_object_or_404
 from django.views import generic
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import mixins as auth_mixins
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.db import transaction, IntegrityError
 from django.db.models import Q
 from django.utils import timezone
-from django.http import HttpResponseForbidden
-from django.urls import reverse_lazy
+from django.http import HttpResponseForbidden, HttpResponseRedirect
+from django.urls import reverse, reverse_lazy
 
 import csv
 import codecs
@@ -95,8 +95,8 @@ class BookSearchView(BookSearchMixin, generic.ListView):
 
     def get_queryset(self):
         # BookSearchFormは使わず、直接取得する方がわかりやすい
-        category = self.request.GET['category']
-        word = self.request.GET['word']
+        category = self.request.GET.get('category')
+        word = self.request.GET.get('word')
 
         # 公開しているもののみを対象とする
         books = Book.objects.filter(published=True)
@@ -137,6 +137,7 @@ class BookDetailView(BookSearchMixin, generic.DetailView):
                     'user': user.pk,
                     'book': book_pk
                 })
+            context['is_favorited'] = user.favorite_books.filter(pk=book_pk).exists()
 
         context['can_view_chapter'] = can_view_chapter(user, book_pk)
 
@@ -213,7 +214,7 @@ def transaction_use(request, pk):
                 record.datetime = timezone.now()
                 record.save()
 
-            return redirect('onboro:book_detail', book.pk)
+    return redirect('onboro:book_detail', book.pk)
 
 class CoinPurchaseView(auth_mixins.LoginRequiredMixin, generic.FormView):
     template_name = 'onboro/purchase.html'
@@ -237,3 +238,21 @@ class CoinPurchaseView(auth_mixins.LoginRequiredMixin, generic.FormView):
 
         messages.success(self.request, f'{amount}コインを購入しました。')
         return super().form_valid(form)
+
+@login_required
+def toggle_favorite(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    user = request.user
+    if user.favorite_books.filter(pk=pk).exists():
+        user.favorite_books.remove(book)
+    else:
+        user.favorite_books.add(book)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('onboro:book_detail', kwargs={'pk': pk})))
+
+
+class FavoriteBookListView(auth_mixins.LoginRequiredMixin, generic.ListView):
+    template_name = 'onboro/favorite_book_list.html'
+    context_object_name = 'books'
+
+    def get_queryset(self):
+        return self.request.user.favorite_books.all()

@@ -1,0 +1,14 @@
+.navbar-light {
+    background-color: #f0f0f0 !important;
+}
+
+/* ボタンの角を丸くする */
+.btn {
+    border-radius: 20px;
+}
+
+/* テーブルのヘッダーの背景色と文字色を変更 */
+.table thead th {
+    background-color: #343a40;
+    color: #ffffff;
+}

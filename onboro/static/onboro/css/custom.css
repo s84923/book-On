@@ -50,21 +50,33 @@ a:hover {
 }
 
 /* アウトラインボタン（お気に入りに追加など） */
+/* アウトラインボタン（お気に入りに追加など） */
 .btn-outline-warning {
     color: #e85d87;
     border-color: #e85d87;
+    background-color: transparent; /* 背景を透明に */
 }
 .btn-outline-warning:hover {
     color: #fff;
     background-color: #e85d87;
     border-color: #e85d87;
 }
-.btn-warning {
+
+/* 塗りつぶしボタン（お気に入りから削除など） */
+.btn-warning,
+.btn-warning:hover { /* 通常時とホバー時をまとめて指定 */
     color: #fff;
     background-color: #e85d87;
     border-color: #e85d87;
 }
 
+/* ホバー時の浮き上がり効果を微調整 */
+.btn-warning:hover {
+    background-color: #d14a75; /* 少し濃いピンクに */
+    border-color: #d14a75;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(232, 93, 135, 0.3);
+}
 /*
  * --- フォーム ---
  */

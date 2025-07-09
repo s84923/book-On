@@ -12,3 +12,13 @@
     background-color: #343a40;
     color: #ffffff;
 }
+
+/* 書籍本文のスタイル */
+.book-body {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #333;
+}

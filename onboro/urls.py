@@ -20,5 +20,6 @@ urlpatterns = [
     path('users/<int:pk>/transactions/use', views.transaction_use, name='transaction_use'),
 
     path('purchase/', views.CoinPurchaseView.as_view(), name='coin_purchase'),
-
+    path('favorite/<int:pk>/toggle', views.toggle_favorite, name='toggle_favorite'),
+    path('favorites/', views.FavoriteBookListView.as_view(), name='favorite_book_list'),
 ]

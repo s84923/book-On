@@ -44,4 +44,13 @@ class Command(BaseCommand):
                             number=j,
                             title=f"{faker.catch_phrase()}",
                             body=faker.text(max_nb_chars=1000)
-              
+                        )
+                    
+                    self.stdout.write(f'書籍「{book.title}」とその章を追加しました。({i + 1}/10)')
+
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f'エラーが発生しました: {e}'))
+            self.stdout.write(self.style.ERROR('処理をロールバックしました。'))
+            return
+
+        self.stdout.write(self.style.SUCCESS('--- 全ての書籍の追加が完了しました ---'))
